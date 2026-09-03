@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { manifesto } from "@/lib/data/manifesto";
 import { RevealText } from "@/components/motion/RevealText";
@@ -18,13 +17,11 @@ export function ManifestoTeaser() {
       <RevealText as="h2" className="font-display text-3xl leading-snug font-medium text-balance text-ronin-white md:text-5xl">
         {m.paragraphs[0]}
       </RevealText>
-      <FadeIn delay={0.2}>
-        <Link href="/about" className="cursor-hover group mt-8 inline-flex items-center gap-2 text-sm text-ronin-white/70 hover:text-ronin-white">
-          <span className="border-b border-transparent transition-colors group-hover:border-ronin-red">{t.about.title}</span>
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
-            →
-          </span>
-        </Link>
+      <FadeIn delay={0.15} as="p" className="mt-6 max-w-3xl text-lg leading-relaxed text-ronin-white/70">
+        {m.paragraphs[1]}
+      </FadeIn>
+      <FadeIn delay={0.25} as="p" className="mt-4 max-w-3xl text-lg leading-relaxed text-ronin-white/70">
+        {m.paragraphs[2]}
       </FadeIn>
     </section>
   );
