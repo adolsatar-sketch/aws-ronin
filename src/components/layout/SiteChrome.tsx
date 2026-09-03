@@ -7,6 +7,7 @@ import { Footer } from "./Footer";
 import { AmbientBackground } from "./AmbientBackground";
 import { IntroOverlay } from "./IntroOverlay";
 import { PageTransitionOverlay } from "./PageTransitionOverlay";
+import { TransitionProvider } from "./TransitionContext";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
 import { TouchFeedback } from "@/components/cursor/TouchFeedback";
 
@@ -14,7 +15,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <>
+    <TransitionProvider>
       <AmbientBackground />
       <IntroOverlay />
       <PageTransitionOverlay />
@@ -25,6 +26,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
-    </>
+    </TransitionProvider>
   );
 }

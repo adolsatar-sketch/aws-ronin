@@ -7,12 +7,16 @@ import { AnimatePresence, motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { navItems } from "@/lib/data/site";
 import { MobileMenu } from "./MobileMenu";
+import { useTransition } from "./TransitionContext";
 
 export function Header() {
   const { lang, t, toggleLang } = useLanguage();
+  const { playTransition } = useTransition();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const switchLanguage = () => playTransition(() => toggleLang());
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -62,7 +66,7 @@ export function Header() {
             })}
             <button
               type="button"
-              onClick={toggleLang}
+              onClick={switchLanguage}
               className="cursor-hover rounded-full border border-ronin-white/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-ronin-white/80 uppercase transition-colors hover:border-ronin-red hover:text-ronin-white"
             >
               {t.common.langSwitch}
@@ -72,7 +76,7 @@ export function Header() {
           <div className="flex items-center gap-4 md:hidden">
             <button
               type="button"
-              onClick={toggleLang}
+              onClick={switchLanguage}
               className="cursor-hover text-xs font-semibold tracking-wide text-ronin-white/80 uppercase"
             >
               {t.common.langSwitch}

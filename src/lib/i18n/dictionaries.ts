@@ -49,13 +49,24 @@ const dictionary = {
       en: "Ideas carried across newspapers, invitations, stands, and physical space.",
       ar: "أفكار انتقلت عبر الجرائد والدعوات والستاندات والمساحة الفعلية.",
     },
-    specialties: {
-      en: "GRAPHIC DESIGN — ART DIRECTION — VISUAL STORYTELLING — BRAND IDENTITY — SOCIAL DESIGN — CAMPAIGNS —",
-      ar: "تصميم جرافيك — إخراج فني — سرد بصري — هوية بصرية — تصميم سوشيال ميديا — حملات —",
-    },
     galleryTitle: { en: "From the Archive", ar: "من الأرشيف" },
     ctaTitle: { en: "Have an idea with no limits?", ar: "عندك فكرة بلا حدود؟" },
     ctaButton: { en: "Start a Project", ar: "ابدأ مشروعك" },
+    categoriesTitle: { en: "Portfolio Categories", ar: "أقسام الأعمال" },
+    categoriesSubtitle: {
+      en: "Every project on this site lives inside one of these.",
+      ar: "كل مشروع في هذا الموقع تجده داخل أحد هذه الأقسام.",
+    },
+    categoryCta: {
+      explore: { en: "Explore Category", ar: "استكشف القسم" },
+      view: { en: "View Projects", ar: "مشاهدة الأعمال" },
+      open: { en: "Open Collection", ar: "فتح المجموعة" },
+    },
+    disciplinesTitle: { en: "Creative Disciplines", ar: "المجالات الإبداعية" },
+    disciplinesSubtitle: {
+      en: "The range of craft behind every Ronin project.",
+      ar: "نطاق الحرفة خلف كل مشروع Ronin.",
+    },
   },
   about: {
     title: { en: "About Ronin", ar: "عن Ronin" },
