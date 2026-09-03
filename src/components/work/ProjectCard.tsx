@@ -27,18 +27,21 @@ export function ProjectCard({ project, index, featured = false }: ProjectCardPro
         <div className={`relative w-full overflow-hidden ${featured ? "aspect-[16/10]" : "aspect-[4/5]"}`}>
           <motion.div
             className="absolute inset-0"
-            initial={false}
-            whileHover={{ scale: 1.06 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ clipPath: index % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)" }}
+            whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Image
-              src={hero.image}
-              alt={`${lang === "ar" ? project.nameAr : project.nameEn} — ${t.work.project}`}
-              fill
-              sizes={featured ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
-              className="object-cover"
-              loading={index < 2 ? "eager" : "lazy"}
-            />
+            <motion.div className="absolute inset-0" initial={false} whileHover={{ scale: 1.06 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+              <Image
+                src={hero.image}
+                alt={`${lang === "ar" ? project.nameAr : project.nameEn} — ${t.work.project}`}
+                fill
+                sizes={featured ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+                className="object-cover"
+                loading={index < 2 ? "eager" : "lazy"}
+              />
+            </motion.div>
           </motion.div>
 
           <div className="absolute inset-0 bg-gradient-to-t from-ronin-black/85 via-ronin-black/10 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />

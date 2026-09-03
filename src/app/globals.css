@@ -7,6 +7,8 @@
   --color-ronin-dark: #212222;
   --color-ronin-red: #a92d2e;
   --color-ronin-red-bright: #c8393a;
+  --color-ronin-burgundy: #4a1518;
+  --color-ronin-ember: #7a3420;
   --color-ronin-white: #f7f7f5;
   --color-ronin-mist: #8b8d8f;
   --color-black: #000000;
@@ -92,24 +94,97 @@ html[dir="rtl"] body {
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-marquee {
-  animation: marquee 32s linear infinite;
-}
-html[dir="rtl"] .animate-marquee {
-  animation-direction: reverse;
-}
-
 .no-scroll {
   overflow: hidden;
   height: 100dvh;
+}
+
+/* Ambient background — slow independent drifts so the field never repeats predictably */
+@keyframes ambient-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 8%) scale(1.08);
+  }
+}
+@keyframes ambient-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-8%, 5%) scale(1.12);
+  }
+}
+@keyframes ambient-drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(5%, -7%) scale(1.06);
+  }
+}
+.animate-ambient-drift-a {
+  animation: ambient-drift-a 26s ease-in-out infinite;
+}
+.animate-ambient-drift-b {
+  animation: ambient-drift-b 32s ease-in-out infinite;
+}
+.animate-ambient-drift-c {
+  animation: ambient-drift-c 22s ease-in-out infinite;
+}
+@keyframes ambient-drift-d {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-4%, -6%) scale(1.1);
+  }
+}
+.animate-ambient-drift-d {
+  animation: ambient-drift-d 38s ease-in-out infinite;
+}
+
+@keyframes ambient-line-drift {
+  0% {
+    transform: rotate(-4deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2deg) translateY(-3%);
+  }
+  100% {
+    transform: rotate(-4deg) translateY(0);
+  }
+}
+.animate-ambient-line {
+  animation: ambient-line-drift 46s ease-in-out infinite;
+}
+
+@keyframes ambient-sweep {
+  0%,
+  92% {
+    transform: translateX(-60%) skewX(-12deg);
+    opacity: 0;
+  }
+  95% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(160%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+.animate-ambient-sweep {
+  animation: ambient-sweep 16s ease-in-out infinite;
+}
+
+.grain-layer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
 @media (prefers-reduced-motion: reduce) {
