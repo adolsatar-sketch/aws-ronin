@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
-import { RevealText } from "@/components/motion/RevealText";
+import { SplitWords } from "@/components/motion/SplitWords";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { Parallax } from "@/components/motion/Parallax";
@@ -15,9 +15,11 @@ export function CtaSection() {
       <Parallax strength={30} className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-[0.06]">
         <RoninMark className="h-[120%] w-[120%] -rotate-6 text-ronin-red" />
       </Parallax>
-      <RevealText as="h2" className="mx-auto max-w-3xl font-display text-4xl leading-tight font-bold text-ronin-white sm:text-5xl md:text-6xl">
-        {t.home.ctaTitle}
-      </RevealText>
+      <SplitWords
+        text={t.home.ctaTitle}
+        as="h2"
+        className="mx-auto max-w-3xl font-display text-4xl leading-tight font-bold text-ronin-white sm:text-5xl md:text-6xl"
+      />
       <FadeIn delay={0.25} className="mt-10 flex justify-center">
         <Button href="/contact">{t.home.ctaButton}</Button>
       </FadeIn>

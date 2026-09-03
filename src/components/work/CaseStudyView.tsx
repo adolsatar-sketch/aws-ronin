@@ -7,6 +7,7 @@ import { getAdjacentProject, pageTypeLabel, type Project } from "@/lib/data/proj
 import { RevealText } from "@/components/motion/RevealText";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
+import { ContactRows } from "@/components/contact/ContactRows";
 
 export function CaseStudyView({ project }: { project: Project }) {
   const { lang, t } = useLanguage();
@@ -77,6 +78,17 @@ export function CaseStudyView({ project }: { project: Project }) {
             {lang === "ar" ? next.nameAr : next.nameEn}
           </RevealText>
         </Link>
+      </section>
+
+      <section className="border-t border-ronin-white/10 px-6 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-2xl">
+          <FadeIn as="p" className="mb-8 text-center font-display text-2xl font-semibold text-ronin-white md:text-3xl">
+            {t.contact.projectCta}
+          </FadeIn>
+          <div className="flex justify-center">
+            <ContactRows variant="compact" />
+          </div>
+        </div>
       </section>
     </div>
   );
