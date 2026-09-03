@@ -1,10 +1,11 @@
 "use client";
 
-import { useReducedMotion, type Variants } from "motion/react";
+import { type Variants } from "motion/react";
 import type { ElementType, ReactNode } from "react";
 import { fadeUp } from "@/lib/motion/variants";
 import { getMotionTag } from "@/lib/motion/motionTag";
 import { useReveal } from "@/lib/motion/useReveal";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 interface FadeInProps {
   children: ReactNode;

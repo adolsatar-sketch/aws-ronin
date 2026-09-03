@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
+import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { RoninMark } from "./RoninMark";
 
 const INTERACTIVE_SELECTOR =

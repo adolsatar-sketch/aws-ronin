@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
   type Variants,
 } from "motion/react";
 import { RONIN_MARK_PATH, RONIN_MARK_VIEWBOX } from "@/lib/motion/roninMarkPath";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 /** The mark rendered as an SVG data URI, used to clip the light-sweep layer to the logo's exact silhouette. */
 const MARK_MASK_URL = `url("data:image/svg+xml,${encodeURIComponent(

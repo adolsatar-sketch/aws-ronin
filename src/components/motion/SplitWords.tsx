@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ElementType } from "react";
 import { useReveal } from "@/lib/motion/useReveal";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 interface SplitWordsProps {
   text: string;

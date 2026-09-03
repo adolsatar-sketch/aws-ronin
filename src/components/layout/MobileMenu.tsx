@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { navItems, manifestoClosing } from "@/lib/data/site";
 import { RoninMark } from "@/components/cursor/RoninMark";

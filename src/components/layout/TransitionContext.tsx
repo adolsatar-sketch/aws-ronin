@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { useReducedMotion } from "motion/react";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 export type TransitionPhase = "idle" | "covering" | "holding" | "revealing";
 

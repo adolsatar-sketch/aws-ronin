@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useReducedMotion } from "motion/react";
 import { RoninMark } from "@/components/cursor/RoninMark";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 /**
  * A living field behind the entire site — layered burgundy/red/ember glows

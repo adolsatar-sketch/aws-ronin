@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { disciplines } from "@/lib/data/disciplines";
 import { FadeIn } from "@/components/motion/FadeIn";
