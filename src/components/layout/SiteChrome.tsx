@@ -22,7 +22,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <CustomCursor />
       <TouchFeedback />
       <Header />
-      <main key={pathname} className="min-h-dvh pt-20">
+      <main key={pathname} className="min-h-screen min-h-svh pt-20">
         {children}
       </main>
       <Footer />

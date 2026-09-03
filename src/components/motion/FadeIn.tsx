@@ -2,8 +2,9 @@
 
 import { useReducedMotion, type Variants } from "motion/react";
 import type { ElementType, ReactNode } from "react";
-import { fadeUp, viewportOnce } from "@/lib/motion/variants";
+import { fadeUp } from "@/lib/motion/variants";
 import { getMotionTag } from "@/lib/motion/motionTag";
+import { useReveal } from "@/lib/motion/useReveal";
 
 interface FadeInProps {
   children: ReactNode;
@@ -27,6 +28,7 @@ export function FadeIn({
   const reduceMotion = useReducedMotion();
   // getMotionTag caches by tag at module scope, so identity is stable across renders.
   const MotionTag = getMotionTag(as as ElementType);
+  const { ref, shown } = useReveal({ once: !repeat, margin: "-10% 0px -10% 0px" });
 
   if (reduceMotion) {
     const Fallback = as as ElementType;
@@ -36,10 +38,10 @@ export function FadeIn({
   return (
     // eslint-disable-next-line react-hooks/static-components -- MotionTag is cached in getMotionTag, not created here
     <MotionTag
+      ref={ref}
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={repeat ? { once: false, margin: "-10% 0px -10% 0px" } : viewportOnce}
+      animate={shown ? "visible" : "hidden"}
       variants={variants}
       transition={{ delay }}
     >

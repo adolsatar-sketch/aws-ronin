@@ -2,7 +2,8 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ElementType, ReactNode } from "react";
-import { maskLine, viewportOnce } from "@/lib/motion/variants";
+import { maskLine } from "@/lib/motion/variants";
+import { useReveal } from "@/lib/motion/useReveal";
 
 interface RevealTextProps {
   children: ReactNode;
@@ -26,6 +27,7 @@ export function RevealText({
   once = true,
 }: RevealTextProps) {
   const reduceMotion = useReducedMotion();
+  const { ref, shown } = useReveal({ once, margin: "-10% 0px -10% 0px" });
 
   if (reduceMotion) {
     const Fallback = Tag as ElementType;
@@ -35,10 +37,10 @@ export function RevealText({
   return (
     <Tag className={className} style={{ overflow: "hidden", display: "block" }}>
       <motion.span
+        ref={ref}
         style={{ display: "block" }}
         initial="hidden"
-        whileInView="visible"
-        viewport={once ? viewportOnce : { once: false, margin: "-10% 0px -10% 0px" }}
+        animate={shown ? "visible" : "hidden"}
         variants={maskLine}
         transition={{ delay }}
       >
