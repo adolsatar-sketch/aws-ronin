@@ -68,8 +68,13 @@ const dictionary = {
     manifestoFinal: { en: "Final Manifesto", ar: "الخاتمة" },
   },
   contact: {
-    title: { en: "Start a Project", ar: "ابدأ مشروعك" },
+    title: { en: "The next project starts with a conversation.", ar: "المشروع القادم يبدأ من محادثة." },
     subtitle: {
+      en: "Have an idea, a brand that needs direction, or a project that deserves a stronger visual presence? Let's begin.",
+      ar: "إذا عندك فكرة، هوية تحتاج اتجاه، أو مشروع يحتاج حضوراً بصرياً أقوى—خلّينا نبدأ.",
+    },
+    formTitle: { en: "Start a Project", ar: "ابدأ مشروعك" },
+    formSubtitle: {
       en: "Tell me about the idea. No limits, no templates — just describe what you need.",
       ar: "احكيلي عن الفكرة. بلا حدود، بلا قوالب جاهزة — فقط اوصف اللي تحتاجه.",
     },
@@ -96,6 +101,14 @@ const dictionary = {
       en: "Contact details are being finalized — check back soon, or use the form above.",
       ar: "معلومات التواصل قيد الإضافة — تابعنا قريباً، أو استخدم النموذج أعلاه.",
     },
+    rows: {
+      email: { tag: "EMAIL", label: { en: "Send an Email", ar: "أرسل إيميل" } },
+      call: { tag: "CALL", label: { en: "Call Now", ar: "اتصل الآن" } },
+      instagram: { tag: "INSTAGRAM", label: { en: "Follow on Instagram", ar: "تابع الأعمال على Instagram" } },
+    },
+    copy: { en: "Copy", ar: "نسخ" },
+    copied: { en: "Copied", ar: "تم النسخ" },
+    projectCta: { en: "Let's start your next project.", ar: "لنبدأ مشروعك القادم." },
   },
   social: {
     title: { en: "Social Media", ar: "سوشيال ميديا" },

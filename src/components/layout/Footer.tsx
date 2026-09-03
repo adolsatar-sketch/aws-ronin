@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { manifestoClosing, siteConfig } from "@/lib/data/site";
 import { RevealText } from "@/components/motion/RevealText";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { ContactRows } from "@/components/contact/ContactRows";
 
 const workLinks = ["brandIdentities", "socialMedia", "logoDesign", "campaigns", "print"] as const;
 
@@ -72,9 +73,7 @@ export function Footer() {
             <h3 className="mb-4 text-xs font-semibold tracking-widest text-ronin-mist uppercase">
               {t.footer.contactHeading}
             </h3>
-            <p className="text-sm text-ronin-mist" aria-hidden="true">
-              —
-            </p>
+            <ContactRows variant="compact" />
           </div>
 
           <div className="flex items-start justify-start md:justify-end">
