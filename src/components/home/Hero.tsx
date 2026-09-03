@@ -11,7 +11,7 @@ export function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-[94dvh] flex-col overflow-hidden px-6 pt-16 pb-10 md:px-10">
+    <section className="relative flex min-h-[94vh] min-h-[94svh] flex-col overflow-hidden px-6 pt-16 pb-10 md:px-10">
       {/* RONIN stays in the DOM for SEO/a11y — the mark, not the word, is the visual hero. */}
       <h1 className="sr-only">{siteConfig.name}</h1>
 

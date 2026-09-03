@@ -2,8 +2,9 @@
 
 import { useReducedMotion, type Variants } from "motion/react";
 import type { ElementType, ReactNode } from "react";
-import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion/variants";
+import { fadeUp, staggerContainer } from "@/lib/motion/variants";
 import { getMotionTag } from "@/lib/motion/motionTag";
+import { useReveal } from "@/lib/motion/useReveal";
 
 interface StaggerGroupProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ export function StaggerGroup({
   const reduceMotion = useReducedMotion();
   // getMotionTag caches by tag at module scope, so identity is stable across renders.
   const MotionTag = getMotionTag(as as ElementType);
+  const { ref, shown } = useReveal({ margin: "-10% 0px -10% 0px" });
 
   if (reduceMotion) {
     const Fallback = as as ElementType;
@@ -33,10 +35,10 @@ export function StaggerGroup({
   return (
     // eslint-disable-next-line react-hooks/static-components -- MotionTag is cached in getMotionTag, not created here
     <MotionTag
+      ref={ref}
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={viewportOnce}
+      animate={shown ? "visible" : "hidden"}
       variants={staggerContainer(stagger, delayChildren)}
     >
       {children}

@@ -11,7 +11,7 @@ export default function NotFound() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[80dvh] flex-col items-center justify-center overflow-hidden px-6 text-center">
+    <section className="relative flex min-h-[80vh] min-h-[80svh] flex-col items-center justify-center overflow-hidden px-6 text-center">
       <Parallax strength={30} className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-[0.05]">
         <RoninMark className="h-[80vh] w-[80vh] text-ronin-white" />
       </Parallax>

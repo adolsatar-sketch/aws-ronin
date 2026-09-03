@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" className={ibmPlexSansArabic.variable} suppressHydrationWarning>
-      <body className="min-h-dvh bg-ronin-black text-ronin-white antialiased" suppressHydrationWarning>
+      <body className="min-h-screen min-h-svh bg-ronin-black text-ronin-white antialiased" suppressHydrationWarning>
         <LanguageProvider>
           <SiteChrome>{children}</SiteChrome>
         </LanguageProvider>

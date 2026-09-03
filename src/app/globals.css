@@ -96,7 +96,8 @@ html[dir="rtl"] body {
 
 .no-scroll {
   overflow: hidden;
-  height: 100dvh;
+  height: 100vh;
+  height: 100svh;
 }
 
 /* Ambient background — slow independent drifts so the field never repeats predictably */

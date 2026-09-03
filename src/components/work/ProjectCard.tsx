@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import type { Project } from "@/lib/data/projects";
 import { StaggerItem } from "@/components/motion/Stagger";
+import { useReveal } from "@/lib/motion/useReveal";
 
 interface ProjectCardProps {
   project: Project;
@@ -17,6 +18,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project, index, featured = false }: ProjectCardProps) {
   const { lang, t } = useLanguage();
   const hero = project.pages[project.heroPage - 1] ?? project.pages[0];
+  const { ref, shown } = useReveal<HTMLDivElement>({ margin: "-10% 0px -10% 0px" });
 
   return (
     <StaggerItem as="article" className={featured ? "md:col-span-2" : undefined}>
@@ -26,10 +28,10 @@ export function ProjectCard({ project, index, featured = false }: ProjectCardPro
       >
         <div className={`relative w-full overflow-hidden ${featured ? "aspect-[16/10]" : "aspect-[4/5]"}`}>
           <motion.div
+            ref={ref}
             className="absolute inset-0"
             initial={{ clipPath: index % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)" }}
-            whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+            animate={shown ? { clipPath: "inset(0 0% 0 0)" } : undefined}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div className="absolute inset-0" initial={false} whileHover={{ scale: 1.06 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>

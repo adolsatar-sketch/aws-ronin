@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ElementType } from "react";
-import { viewportOnce } from "@/lib/motion/variants";
+import { useReveal } from "@/lib/motion/useReveal";
 
 interface SplitWordsProps {
   text: string;
@@ -20,6 +20,7 @@ interface SplitWordsProps {
 export function SplitWords({ text, as: Tag = "span", className, delay = 0 }: SplitWordsProps) {
   const reduceMotion = useReducedMotion();
   const words = text.split(" ");
+  const { ref, shown } = useReveal({ margin: "-10% 0px -10% 0px" });
 
   if (reduceMotion) {
     const Fallback = Tag as ElementType;
@@ -29,9 +30,9 @@ export function SplitWords({ text, as: Tag = "span", className, delay = 0 }: Spl
   return (
     <Tag className={className} style={{ display: "block" }}>
       <motion.span
+        ref={ref}
         initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
+        animate={shown ? "visible" : "hidden"}
         variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: delay } } }}
         style={{ display: "inline" }}
       >
