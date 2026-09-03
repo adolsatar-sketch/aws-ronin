@@ -17,10 +17,10 @@ export function BrandIdentitiesShowcase() {
           <p className="mt-3 max-w-xl text-ronin-white/60">{t.home.brandIdentitiesDesc}</p>
         </div>
         <Button href="/work/brand-identities" variant="outline">
-          {t.home.viewAllWork}
+          {t.home.explore}
         </Button>
       </FadeIn>
-      <ProjectGrid projects={projects.slice(0, 6)} />
+      <ProjectGrid projects={projects.slice(0, 4)} />
     </section>
   );
 }

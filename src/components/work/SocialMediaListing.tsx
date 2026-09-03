@@ -42,7 +42,7 @@ export function SocialMediaListing() {
             {group.subgroups ? (
               <div className="space-y-10">
                 {group.subgroups.map((sub) => (
-                  <div key={sub.slug}>
+                  <div key={sub.slug} id={`${group.anchor}-${sub.slug}`} className="scroll-mt-40">
                     <FadeIn as="h3" className="mb-4 text-sm font-semibold text-ronin-mist">
                       {lang === "ar" ? sub.labelAr : sub.labelEn}
                     </FadeIn>

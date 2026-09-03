@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
-import { campaignItems, printItems } from "@/lib/data/logoDesign";
+import { campaignItems } from "@/lib/data/logoDesign";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { StaggerGroup } from "@/components/motion/Stagger";
 import { ImageTile } from "@/components/work/ImageTile";
@@ -18,7 +18,7 @@ export function CampaignsShowcase() {
           <p className="mt-3 max-w-xl text-ronin-white/60">{t.home.campaignsDesc}</p>
         </div>
         <Button href="/work/campaigns" variant="outline">
-          {t.home.viewAllWork}
+          {t.home.explore}
         </Button>
       </FadeIn>
       <StaggerGroup as="div" stagger={0.08} className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
@@ -30,9 +30,6 @@ export function CampaignsShowcase() {
             aspect="aspect-[3/4]"
             caption={lang === "ar" ? item.labelAr : item.labelEn}
           />
-        ))}
-        {printItems.slice(0, 2).map((item) => (
-          <ImageTile key={item.slug} src={item.thumb} alt={`${t.print.title} ${item.index}`} aspect="aspect-[3/4]" />
         ))}
       </StaggerGroup>
     </section>

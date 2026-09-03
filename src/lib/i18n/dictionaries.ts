@@ -38,6 +38,7 @@ const dictionary = {
     manifestoLabel: { en: "Manifesto", ar: "الفلسفة" },
     selectedWork: { en: "Selected Work", ar: "أعمال مختارة" },
     viewAllWork: { en: "View All Work", ar: "عرض كل الأعمال" },
+    explore: { en: "Explore", ar: "استكشف" },
     brandIdentitiesTitle: { en: "Brand Identities", ar: "الهويات البصرية" },
     brandIdentitiesDesc: {
       en: "Full visual systems built from the ground up — logo, color, type, and application.",
