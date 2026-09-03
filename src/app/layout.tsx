@@ -21,9 +21,10 @@ export const metadata: Metadata = {
   description: siteConfig.description.en,
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
+      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
+      { url: "/favicon.ico?v=2" },
     ],
+    shortcut: "/favicon.ico?v=2",
   },
   openGraph: {
     title: `${siteConfig.name} — ${siteConfig.taglineEn}`,
