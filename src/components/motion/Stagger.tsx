@@ -36,7 +36,7 @@ export function StaggerGroup({
     // eslint-disable-next-line react-hooks/static-components -- MotionTag is cached in getMotionTag, not created here
     <MotionTag
       ref={ref}
-      className={className}
+      className={className ? `${className} motion-reveal` : "motion-reveal"}
       initial="hidden"
       animate={shown ? "visible" : "hidden"}
       variants={staggerContainer(stagger, delayChildren)}
@@ -65,7 +65,7 @@ export function StaggerItem({ children, as = "div", className, variants = fadeUp
 
   return (
     // eslint-disable-next-line react-hooks/static-components -- MotionTag is cached in getMotionTag, not created here
-    <MotionTag className={className} variants={variants}>
+    <MotionTag className={className ? `${className} motion-reveal` : "motion-reveal"} variants={variants}>
       {children}
     </MotionTag>
   );

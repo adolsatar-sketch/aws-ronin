@@ -29,7 +29,11 @@ export function IntroOverlay() {
 
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time first-visit gate read from sessionStorage
     setVisible(true);
-    document.documentElement.classList.add("no-scroll");
+    // Scroll lock only on desktop/tablet — mobile never gets a locked <html>,
+    // so a stalled intro (backgrounded in-app-browser tab, etc.) can never
+    // leave a mobile visitor stuck unable to scroll.
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (!isMobile) document.documentElement.classList.add("no-scroll");
     try {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {

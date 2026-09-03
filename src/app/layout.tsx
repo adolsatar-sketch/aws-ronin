@@ -45,6 +45,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl" className={ibmPlexSansArabic.variable} suppressHydrationWarning>
       <body className="min-h-screen min-h-svh bg-ronin-black text-ronin-white antialiased" suppressHydrationWarning>
+        {/*
+          Absolute floor: every scroll-reveal wrapper (FadeIn, StaggerGroup,
+          RevealText, SplitWords, ProjectCard) carries a `motion-reveal`
+          class and ships server-rendered at its hidden variant, relying on
+          client JS to reveal it. If JS never runs at all, nothing is there
+          to do that. `<noscript>` styles only apply with scripting
+          disabled, so this never touches anyone whose JS actually runs.
+        */}
+        <noscript>
+          <style>{`.motion-reveal,.motion-reveal *{opacity:1 !important;transform:none !important;clip-path:none !important;}`}</style>
+        </noscript>
         <LanguageProvider>
           <SiteChrome>{children}</SiteChrome>
         </LanguageProvider>

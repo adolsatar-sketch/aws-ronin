@@ -183,6 +183,66 @@ html[dir="rtl"] body {
   animation: ambient-sweep 16s ease-in-out infinite;
 }
 
+/* Mobile hero logo: pure CSS motion only (no JS/SVG masking) so it is
+   never gated behind an observer or animation library on iOS in-app
+   browsers — see HeroLogoMobile. */
+@keyframes hero-mobile-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes hero-mobile-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+.hero-mobile-logo-img {
+  animation:
+    hero-mobile-float 5.5s ease-in-out infinite,
+    hero-mobile-breathe 5.5s ease-in-out infinite;
+}
+
+@keyframes hero-mobile-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.05);
+  }
+}
+.hero-mobile-logo-glow {
+  animation: hero-mobile-glow-pulse 6s ease-in-out infinite;
+}
+
+@keyframes hero-mobile-sweep {
+  0%,
+  85% {
+    transform: translateX(-120%) skewX(-15deg);
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(220%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+.hero-mobile-logo-sweep {
+  animation: hero-mobile-sweep 5s ease-in-out infinite;
+}
+
 .grain-layer {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;

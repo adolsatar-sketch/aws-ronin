@@ -105,7 +105,7 @@ export function RoninHeroLogo() {
   };
 
   return (
-    <div ref={sectionRef} className="relative flex flex-1 items-center justify-center py-10">
+    <div ref={sectionRef} className="relative hidden flex-1 items-center justify-center py-10 md:flex">
       <motion.div
         ref={containerRef}
         style={reduceMotion ? undefined : { scale: scrollScale, opacity: scrollOpacity, y: scrollY }}

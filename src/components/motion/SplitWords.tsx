@@ -31,6 +31,7 @@ export function SplitWords({ text, as: Tag = "span", className, delay = 0 }: Spl
     <Tag className={className} style={{ display: "block" }}>
       <motion.span
         ref={ref}
+        className="motion-reveal"
         initial="hidden"
         animate={shown ? "visible" : "hidden"}
         variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: delay } } }}

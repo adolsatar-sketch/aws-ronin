@@ -58,6 +58,13 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
           () => setState((s) => ({ ...s, phase: "idle" })),
           timing.covering + timing.holding + timing.revealing,
         ),
+        // Hard ceiling, independent of the sequence above: guarantees the
+        // overlay can never stay up longer than this no matter what goes
+        // wrong in the chain (a dropped timer, an unexpected re-render,
+        // etc). `onCovered` already fired at `timing.covering` (well under
+        // 1500ms) in the normal case, so it is deliberately not repeated
+        // here — this only forces the overlay itself closed.
+        window.setTimeout(() => setState((s) => ({ ...s, phase: "idle" })), 1500),
       );
     },
     [clearTimers, reduceMotion],

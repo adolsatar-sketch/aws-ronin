@@ -38,6 +38,7 @@ export function RevealText({
     <Tag className={className} style={{ overflow: "hidden", display: "block" }}>
       <motion.span
         ref={ref}
+        className="motion-reveal"
         style={{ display: "block" }}
         initial="hidden"
         animate={shown ? "visible" : "hidden"}

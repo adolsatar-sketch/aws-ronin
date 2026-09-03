@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { RoninHeroLogo } from "./RoninHeroLogo";
+import { HeroLogoMobile } from "./HeroLogoMobile";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { manifestoClosing, siteConfig } from "@/lib/data/site";
 
@@ -19,6 +20,7 @@ export function Hero() {
         <span>{t.home.heroEyebrow}</span>
       </FadeIn>
 
+      <HeroLogoMobile />
       <RoninHeroLogo />
 
       <FadeIn delay={0.4} className="mx-auto max-w-2xl text-center">

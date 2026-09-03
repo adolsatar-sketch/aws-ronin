@@ -39,7 +39,7 @@ export function FadeIn({
     // eslint-disable-next-line react-hooks/static-components -- MotionTag is cached in getMotionTag, not created here
     <MotionTag
       ref={ref}
-      className={className}
+      className={className ? `${className} motion-reveal` : "motion-reveal"}
       initial="hidden"
       animate={shown ? "visible" : "hidden"}
       variants={variants}

@@ -29,7 +29,7 @@ export function ProjectCard({ project, index, featured = false }: ProjectCardPro
         <div className={`relative w-full overflow-hidden ${featured ? "aspect-[16/10]" : "aspect-[4/5]"}`}>
           <motion.div
             ref={ref}
-            className="absolute inset-0"
+            className="motion-reveal absolute inset-0"
             initial={{ clipPath: index % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)" }}
             animate={shown ? { clipPath: "inset(0 0% 0 0)" } : undefined}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
