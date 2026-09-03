@@ -15,7 +15,8 @@ export function HeroLogoMobile() {
       <div className="relative w-[72vw] max-w-[380px]">
         <div
           aria-hidden="true"
-          className="hero-mobile-logo-glow absolute inset-[-25%] rounded-full bg-ronin-red/30 blur-[60px]"
+          className="hero-mobile-logo-glow absolute inset-[-25%] rounded-full"
+          style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--color-ronin-red) 55%, transparent) 0%, transparent 70%)" }}
         />
         <div className="relative overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element -- plain <img>, matching the header's proven logo rendering; must never be gated behind next/image lazy-loading or JS */}

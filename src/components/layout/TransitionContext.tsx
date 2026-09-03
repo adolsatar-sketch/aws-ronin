@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
+import { isIntroActive } from "@/lib/motion/introGate";
 
 export type TransitionPhase = "idle" | "covering" | "holding" | "revealing";
 
@@ -18,12 +19,17 @@ interface TransitionContextValue extends TransitionState {
 
 const TransitionContext = createContext<TransitionContextValue | null>(null);
 
-/** Desktop gets the full cinematic hold; small screens get a quicker but still deliberate version. */
+/**
+ * Both bands land inside 0.8-1.1s total — cinematic and legible without
+ * ever feeling slow or laggy. Mobile is the lighter, quicker end of that
+ * band since PageTransitionOverlay also swaps its rendering technique on
+ * mobile (opacity/transform only, no clip-path).
+ */
 function getTiming() {
   const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
   return isMobile
-    ? { covering: 300, holding: 320, revealing: 380 }
-    : { covering: 450, holding: 380, revealing: 550 };
+    ? { covering: 270, holding: 230, revealing: 300 } // 800ms
+    : { covering: 330, holding: 280, revealing: 350 }; // 960ms
 }
 
 export function TransitionProvider({ children }: { children: ReactNode }) {
@@ -41,6 +47,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const playTransition = useCallback(
     (onCovered?: () => void) => {
       if (reduceMotion) {
+        onCovered?.();
+        return;
+      }
+      // The first-visit intro is already a full-screen cover; stacking a
+      // second animated overlay on top of it is exactly the kind of
+      // overlap that reads as a glitch, especially on slower devices. It
+      // will reveal whatever page is underneath on its own once it's done.
+      if (isIntroActive()) {
         onCovered?.();
         return;
       }
@@ -62,9 +76,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         // overlay can never stay up longer than this no matter what goes
         // wrong in the chain (a dropped timer, an unexpected re-render,
         // etc). `onCovered` already fired at `timing.covering` (well under
-        // 1500ms) in the normal case, so it is deliberately not repeated
-        // here — this only forces the overlay itself closed.
-        window.setTimeout(() => setState((s) => ({ ...s, phase: "idle" })), 1500),
+        // this ceiling) in the normal case, so it is deliberately not
+        // repeated here — this only forces the overlay itself closed.
+        window.setTimeout(() => setState((s) => ({ ...s, phase: "idle" })), 1200),
       );
     },
     [clearTimers, reduceMotion],

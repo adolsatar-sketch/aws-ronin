@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { RONIN_MARK_PATH, RONIN_MARK_VIEWBOX } from "@/lib/motion/roninMarkPath";
+import { setIntroActive } from "@/lib/motion/introGate";
 
 const STORAGE_KEY = "ronin-intro-seen";
 const DURATION = 2000;
@@ -29,6 +30,7 @@ export function IntroOverlay() {
 
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time first-visit gate read from sessionStorage
     setVisible(true);
+    setIntroActive(true);
     // Scroll lock only on desktop/tablet — mobile never gets a locked <html>,
     // so a stalled intro (backgrounded in-app-browser tab, etc.) can never
     // leave a mobile visitor stuck unable to scroll.
@@ -43,12 +45,14 @@ export function IntroOverlay() {
     const leaveTimer = window.setTimeout(() => setLeaving(true), DURATION - 500);
     const hideTimer = window.setTimeout(() => {
       setVisible(false);
+      setIntroActive(false);
       document.documentElement.classList.remove("no-scroll");
     }, DURATION);
 
     return () => {
       window.clearTimeout(leaveTimer);
       window.clearTimeout(hideTimer);
+      setIntroActive(false);
       document.documentElement.classList.remove("no-scroll");
     };
   }, [reduceMotion]);

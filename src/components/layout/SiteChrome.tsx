@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { AmbientBackground } from "./AmbientBackground";
+import { CinematicMotifLayer } from "@/components/decorative/CinematicMotifLayer";
 import { IntroOverlay } from "./IntroOverlay";
 import { PageTransitionOverlay } from "./PageTransitionOverlay";
 import { TransitionProvider } from "./TransitionContext";
@@ -17,6 +18,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <TransitionProvider>
       <AmbientBackground />
+      <CinematicMotifLayer />
       <IntroOverlay />
       <PageTransitionOverlay />
       <CustomCursor />

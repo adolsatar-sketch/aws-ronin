@@ -117,7 +117,8 @@ export function RoninHeroLogo() {
         {/* Ambient glow breathing behind the mark */}
         <motion.div
           aria-hidden="true"
-          className="absolute inset-[-30%] rounded-full bg-ronin-red/25 blur-[70px]"
+          className="absolute inset-[-30%] rounded-full"
+          style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--color-ronin-red) 45%, transparent) 0%, transparent 68%)" }}
           animate={
             reduceMotion
               ? { opacity: 0.35 }

@@ -14,7 +14,7 @@ export function SocialMediaListing() {
     <>
       <PageHeader eyebrow={t.work.filters.socialMedia} title={t.social.title} subtitle={t.social.subtitle} />
 
-      <div className="sticky top-20 z-30 mb-10 overflow-x-auto border-y border-ronin-white/10 bg-ronin-black/90 px-6 py-3 backdrop-blur-md md:px-10">
+      <div className="sticky top-20 z-30 mb-10 overflow-x-auto border-y border-ronin-white/10 bg-ronin-black/95 px-6 py-3 md:px-10">
         <div className="flex w-max gap-5">
           {socialGroups.map((group) => (
             <a

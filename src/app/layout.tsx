@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageProvider";
@@ -11,6 +11,16 @@ const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
   display: "swap",
 });
+
+// Explicit dark color-scheme + matching theme-color: without these, some
+// mobile browsers (Samsung Internet's "website dark theme" in particular)
+// try to auto-recolor pages they judge as not already dark-aware, which
+// can repaint parts of an already-dark site incorrectly. Declaring both
+// tells the browser this site already handles it.
+export const viewport: Viewport = {
+  themeColor: "#08090b",
+  colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -45,7 +55,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" className={ibmPlexSansArabic.variable} suppressHydrationWarning>
-      <body className="min-h-screen min-h-svh bg-ronin-black text-ronin-white antialiased" suppressHydrationWarning>
+      {/*
+        No background color on <body> on purpose: CSS paints a normal-flow
+        element's own background above its `position:fixed`, negative
+        z-index descendants (stacking order puts negative-z content
+        behind the box that establishes the context, not above it) — an
+        opaque body background here was silently occluding the entire
+        fixed ambient-background/motif layer. `html` already carries the
+        same color as a canvas-level fallback, so nothing is ever
+        uncovered black.
+      */}
+      <body className="min-h-screen min-h-svh text-ronin-white antialiased" suppressHydrationWarning>
         {/*
           Absolute floor: every scroll-reveal wrapper (FadeIn, StaggerGroup,
           RevealText, SplitWords, ProjectCard) carries a `motion-reveal`

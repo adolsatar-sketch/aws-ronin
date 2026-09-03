@@ -45,7 +45,8 @@ html {
 }
 
 body {
-  background: var(--color-ronin-black);
+  /* No background here on purpose — see the comment on <body> in
+     layout.tsx. html's background above is the canvas-level fallback. */
   color: var(--color-ronin-white);
   font-family: var(--font-body), "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -100,32 +101,39 @@ html[dir="rtl"] body {
   height: 100svh;
 }
 
-/* Ambient background — slow independent drifts so the field never repeats predictably */
+/* Ambient background — slow independent drifts so the field never repeats
+   predictably. Animates the standalone `translate` property (not the
+   `transform` shorthand) so it composes with each element's own inline
+   `transform` (pointer/scroll parallax) instead of silently overriding
+   it. No scale(), no filter — these run forever on every page, so they
+   stay compositor-only (GPU just moves the existing layer) instead of
+   forcing a repaint each frame, which is what made this class of
+   animation stutter on mid-range Android. */
 @keyframes ambient-drift-a {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    translate: 0 0;
   }
   50% {
-    transform: translate(6%, 8%) scale(1.08);
+    translate: 6% 8%;
   }
 }
 @keyframes ambient-drift-b {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    translate: 0 0;
   }
   50% {
-    transform: translate(-8%, 5%) scale(1.12);
+    translate: -8% 5%;
   }
 }
 @keyframes ambient-drift-c {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    translate: 0 0;
   }
   50% {
-    transform: translate(5%, -7%) scale(1.06);
+    translate: 5% -7%;
   }
 }
 .animate-ambient-drift-a {
@@ -140,10 +148,10 @@ html[dir="rtl"] body {
 @keyframes ambient-drift-d {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    translate: 0 0;
   }
   50% {
-    transform: translate(-4%, -6%) scale(1.1);
+    translate: -4% -6%;
   }
 }
 .animate-ambient-drift-d {
@@ -181,6 +189,57 @@ html[dir="rtl"] body {
 }
 .animate-ambient-sweep {
   animation: ambient-sweep 16s ease-in-out infinite;
+}
+
+/* Cinematic motif layer (CinematicMotifLayer) — slow, quiet loops for the
+   decorative brush/ink/gate/blade motifs. translate + rotate + opacity
+   only, deliberately no scale and no filter, for the same compositing
+   reasons as the ambient drift keyframes above. */
+@keyframes motif-drift-loop {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+    opacity: var(--motif-opacity, 0.06);
+  }
+  50% {
+    translate: -2.5% 3%;
+    rotate: 2deg;
+    opacity: calc(var(--motif-opacity, 0.06) * 0.55);
+  }
+}
+.animate-motif-drift {
+  animation: motif-drift-loop 52s ease-in-out infinite;
+}
+
+@keyframes motif-drift-loop-reverse {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+    opacity: var(--motif-opacity, 0.06);
+  }
+  50% {
+    translate: 3% -2.5%;
+    rotate: -3deg;
+    opacity: calc(var(--motif-opacity, 0.06) * 0.5);
+  }
+}
+.animate-motif-drift-reverse {
+  animation: motif-drift-loop-reverse 60s ease-in-out infinite;
+}
+
+@keyframes motif-breathe {
+  0%,
+  100% {
+    opacity: var(--motif-opacity, 0.06);
+  }
+  50% {
+    opacity: calc(var(--motif-opacity, 0.06) * 0.4);
+  }
+}
+.animate-motif-breathe {
+  animation: motif-breathe 34s ease-in-out infinite;
 }
 
 /* Mobile hero logo: pure CSS motion only (no JS/SVG masking) so it is
