@@ -5,6 +5,8 @@ import { RedSunDisc } from "./motifs/RedSunDisc";
 import { InkLines } from "./motifs/InkLines";
 import { ToriiSilhouette } from "./motifs/ToriiSilhouette";
 import { KatanaEdge } from "./motifs/KatanaEdge";
+import { KanjiMark } from "./motifs/KanjiMark";
+import { MountainSilhouette } from "./motifs/MountainSilhouette";
 
 export type MotifAnimation = "drift" | "drift-reverse" | "breathe";
 
@@ -115,5 +117,29 @@ export const motifPlacements: MotifPlacement[] = [
     scrollFactor: -0.28,
     androidSafe: false,
     animationDelay: "-22s",
+  },
+  {
+    // 浪人 itself, in real ink-brush calligraphy — see KanjiMark.tsx for why
+    // this is extracted glyph data rather than a hand-drawn stroke.
+    id: "kanji-mid-right",
+    Motif: KanjiMark,
+    className: "absolute top-[62%] -right-[8%] h-[10vmax] w-[22vmax] md:h-[9vmax] md:w-[19vmax] rotate-[-4deg]",
+    colorClass: "text-ronin-red",
+    opacity: 0.08,
+    animation: "breathe",
+    scrollFactor: 0.18,
+    androidSafe: true,
+    animationDelay: "-40s",
+  },
+  {
+    id: "mountain-bottom-center",
+    Motif: MountainSilhouette,
+    className: "absolute bottom-[-2%] right-[22%] h-[10vmax] w-[16vmax] md:h-[9vmax] md:w-[14vmax]",
+    colorClass: "text-ronin-white",
+    opacity: 0.04,
+    animation: "drift-reverse",
+    scrollFactor: -0.06,
+    androidSafe: false,
+    animationDelay: "-16s",
   },
 ];
