@@ -5,7 +5,6 @@ import { RedSunDisc } from "./motifs/RedSunDisc";
 import { EnsoCircle } from "./motifs/EnsoCircle";
 import { KatanaDetail } from "./motifs/KatanaDetail";
 import { WaveCrest } from "./motifs/WaveCrest";
-import { GeometricPattern } from "./motifs/GeometricPattern";
 import { KanjiMark } from "./motifs/KanjiMark";
 
 export type MotifAnimation = "drift" | "drift-reverse" | "breathe";
@@ -94,17 +93,6 @@ export const motifPlacements: MotifPlacement[] = [
     animation: "drift",
     scrollFactor: -0.18,
     androidSafe: true,
-  },
-  {
-    id: "geometric-top-center",
-    Motif: GeometricPattern,
-    className: "absolute -top-[1%] left-[28%] h-[8vmax] w-[26vmax] md:h-[7vmax] md:w-[21vmax]",
-    colorClass: "text-ronin-white",
-    opacity: 0.1,
-    animation: "breathe",
-    scrollFactor: -0.1,
-    androidSafe: false,
-    animationDelay: "-2s",
   },
   {
     // 浪人 itself, in real ink-brush calligraphy — see KanjiMark.tsx for why

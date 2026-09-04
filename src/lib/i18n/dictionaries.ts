@@ -129,6 +129,11 @@ const dictionary = {
     },
     viewCollection: { en: "View Collection", ar: "عرض المجموعة" },
     images: { en: "images", ar: "صورة" },
+    lightbox: {
+      close: { en: "Close", ar: "إغلاق" },
+      next: { en: "Next post", ar: "البوست التالي" },
+      previous: { en: "Previous post", ar: "البوست السابق" },
+    },
   },
   logoDesign: {
     title: { en: "Logo Design", ar: "تصاميم الشعارات" },

@@ -1,3 +1,12 @@
+import dimensions from "./socialImageDimensions.json";
+
+export interface SocialImage {
+  src: string;
+  thumb: string;
+  width: number;
+  height: number;
+}
+
 export interface SocialSubGroup {
   slug: string;
   labelEn: string;
@@ -76,17 +85,25 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-export function groupImages(group: SocialGroup): string[] {
+const imageDimensions: Record<string, { width: number; height: number }> = dimensions;
+
+function toSocialImage(fullSrc: string): SocialImage {
+  const { width, height } = imageDimensions[fullSrc] ?? { width: 4, height: 5 };
+  return { src: fullSrc, thumb: fullSrc.replace(/\.webp$/, "-thumb.webp"), width, height };
+}
+
+export function groupImages(group: SocialGroup): SocialImage[] {
   if (group.count) {
-    return Array.from({ length: group.count }, (_, i) => `/images/social/${group.slug}/${group.slug}-${pad(i + 1)}.webp`);
+    return Array.from({ length: group.count }, (_, i) =>
+      toSocialImage(`/images/social/${group.slug}/${group.slug}-${pad(i + 1)}.webp`),
+    );
   }
   return [];
 }
 
-export function subgroupImages(group: SocialGroup, sub: SocialSubGroup): string[] {
-  return Array.from(
-    { length: sub.count },
-    (_, i) => `/images/social/${group.slug}/${sub.slug}/${sub.slug}-${pad(i + 1)}.webp`,
+export function subgroupImages(group: SocialGroup, sub: SocialSubGroup): SocialImage[] {
+  return Array.from({ length: sub.count }, (_, i) =>
+    toSocialImage(`/images/social/${group.slug}/${sub.slug}/${sub.slug}-${pad(i + 1)}.webp`),
   );
 }
 

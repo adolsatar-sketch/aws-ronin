@@ -3,8 +3,7 @@
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { socialGroups, groupImages, subgroupImages, totalSocialImages } from "@/lib/data/social";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { StaggerGroup } from "@/components/motion/Stagger";
-import { ImageTile } from "@/components/work/ImageTile";
+import { PostGallery } from "@/components/work/PostGallery";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 export function SocialMediaListing() {
@@ -46,20 +45,12 @@ export function SocialMediaListing() {
                     <FadeIn as="h3" className="mb-4 text-sm font-semibold text-ronin-mist">
                       {lang === "ar" ? sub.labelAr : sub.labelEn}
                     </FadeIn>
-                    <StaggerGroup as="div" stagger={0.05} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-                      {subgroupImages(group, sub).map((src) => (
-                        <ImageTile key={src} src={src.replace(/\.webp$/, "-thumb.webp")} alt={`${lang === "ar" ? sub.labelAr : sub.labelEn}`} />
-                      ))}
-                    </StaggerGroup>
+                    <PostGallery images={subgroupImages(group, sub)} alt={lang === "ar" ? sub.labelAr : sub.labelEn} />
                   </div>
                 ))}
               </div>
             ) : (
-              <StaggerGroup as="div" stagger={0.05} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-                {groupImages(group).map((src) => (
-                  <ImageTile key={src} src={src.replace(/\.webp$/, "-thumb.webp")} alt={`${lang === "ar" ? group.labelAr : group.labelEn}`} />
-                ))}
-              </StaggerGroup>
+              <PostGallery images={groupImages(group)} alt={lang === "ar" ? group.labelAr : group.labelEn} />
             )}
           </section>
         ))}
