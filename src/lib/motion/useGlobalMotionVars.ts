@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { scrollBackgroundColor } from "./scrollColor";
 
 /**
  * Writes the site's shared scroll/pointer motion signals onto
@@ -9,9 +8,12 @@ import { scrollBackgroundColor } from "./scrollColor";
  *
  *  --scroll-progress  0..1 scroll position
  *  --scroll-shift     px offset for background parallax
- *  --bg-color         the current interpolated background color
  *  --pointer-x/-y      smoothed pointer offset (desktop) / touch (mobile)
  *  --touch-boost       glow intensity boost right after a touch
+ *
+ * (The background *color* itself is handled separately, directly by
+ * Framer Motion's useScroll()/useTransform() in AmbientBackground — see
+ * scrollColor.ts — rather than through a CSS var here.)
  *
  * Written on `:root` rather than a component-local ref so every
  * descendant — AmbientBackground's own layers, the cinematic motif
@@ -78,9 +80,8 @@ export function useGlobalMotionVars(reduceMotion: boolean) {
       const max = root.scrollHeight - root.clientHeight;
       const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
       root.style.setProperty("--scroll-progress", progress.toFixed(4));
-      root.style.setProperty("--bg-color", scrollBackgroundColor(progress));
       if (!reduceMotion) {
-        root.style.setProperty("--scroll-shift", `${(progress - 0.5) * -60}px`);
+        root.style.setProperty("--scroll-shift", `${(progress - 0.5) * -140}px`);
       }
     };
 

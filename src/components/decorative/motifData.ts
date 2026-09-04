@@ -1,12 +1,12 @@
 import type { ComponentType } from "react";
-import { EnsoCircle } from "./motifs/EnsoCircle";
-import { BrushStroke } from "./motifs/BrushStroke";
+import { ToriiGate } from "./motifs/ToriiGate";
+import { PagodaTower } from "./motifs/PagodaTower";
 import { RedSunDisc } from "./motifs/RedSunDisc";
-import { InkLines } from "./motifs/InkLines";
-import { ToriiSilhouette } from "./motifs/ToriiSilhouette";
-import { KatanaEdge } from "./motifs/KatanaEdge";
+import { EnsoCircle } from "./motifs/EnsoCircle";
+import { KatanaDetail } from "./motifs/KatanaDetail";
+import { WaveCrest } from "./motifs/WaveCrest";
+import { GeometricPattern } from "./motifs/GeometricPattern";
 import { KanjiMark } from "./motifs/KanjiMark";
-import { MountainSilhouette } from "./motifs/MountainSilhouette";
 
 export type MotifAnimation = "drift" | "drift-reverse" | "breathe";
 
@@ -15,14 +15,14 @@ export interface MotifPlacement {
   Motif: ComponentType<{ className?: string }>;
   /** Tailwind position/size classes — everything except color and animation. */
   className: string;
-  /** Tailwind text-color class at low opacity — motifs are pure currentColor strokes/fills. */
+  /** Tailwind text-color class — motifs are pure currentColor strokes/fills. */
   colorClass: string;
   /** Base opacity fed to the CSS animation via --motif-opacity. */
   opacity: number;
   animation: MotifAnimation;
   /** Parallax multiplier applied to --scroll-shift; 0 = no scroll movement. */
   scrollFactor: number;
-  /** Skipped entirely on Android to keep the decorative layer light there. */
+  /** Kept even on Android — trimmed to this smaller set there, never emptied. */
   androidSafe: boolean;
   animationDelay?: string;
 }
@@ -35,111 +35,88 @@ export interface MotifPlacement {
  */
 export const motifPlacements: MotifPlacement[] = [
   {
-    id: "enso-top-left",
-    Motif: EnsoCircle,
-    className: "absolute top-[6%] left-[4%] h-[26vmax] w-[26vmax] md:h-[20vmax] md:w-[20vmax]",
+    id: "torii-bottom-center",
+    Motif: ToriiGate,
+    className: "absolute bottom-[2%] left-1/2 h-[20vmax] w-[24vmax] md:h-[17vmax] md:w-[20vmax] -translate-x-1/2",
     colorClass: "text-ronin-red",
-    opacity: 0.11,
-    animation: "drift",
-    scrollFactor: 0.12,
+    opacity: 0.16,
+    animation: "breathe",
+    scrollFactor: 0.16,
     androidSafe: true,
   },
   {
-    id: "brush-mid-right",
-    Motif: BrushStroke,
-    className: "absolute top-[22%] -right-[4%] h-[14vmax] w-[34vmax] md:h-[12vmax] md:w-[26vmax] rotate-[-8deg]",
-    colorClass: "text-ronin-white",
-    opacity: 0.075,
-    animation: "drift-reverse",
-    scrollFactor: -0.2,
-    androidSafe: true,
+    id: "pagoda-top-left",
+    Motif: PagodaTower,
+    className: "absolute top-[4%] left-[3%] h-[24vmax] w-[20vmax] md:h-[20vmax] md:w-[17vmax]",
+    colorClass: "text-ronin-red",
+    opacity: 0.14,
+    animation: "drift",
+    scrollFactor: 0.12,
+    androidSafe: false,
   },
   {
     id: "sun-top-right",
     Motif: RedSunDisc,
-    className: "absolute top-[10%] right-[8%] h-[16vmax] w-[16vmax] md:h-[12vmax] md:w-[12vmax]",
+    className: "absolute top-[9%] right-[6%] h-[15vmax] w-[15vmax] md:h-[12vmax] md:w-[12vmax]",
     colorClass: "text-ronin-red",
-    opacity: 0.10,
+    opacity: 0.2,
     animation: "breathe",
     scrollFactor: 0.08,
     androidSafe: true,
   },
   {
-    id: "ink-bottom-left",
-    Motif: InkLines,
-    className: "absolute bottom-[4%] left-[2%] h-[30vmax] w-[24vmax] md:h-[24vmax] md:w-[20vmax]",
-    colorClass: "text-ronin-red",
-    opacity: 0.09,
-    animation: "drift",
-    scrollFactor: -0.16,
-    androidSafe: false,
-    animationDelay: "-14s",
-  },
-  {
-    id: "torii-center-bottom",
-    Motif: ToriiSilhouette,
-    className: "absolute bottom-[-6%] left-1/2 h-[16vmax] w-[20vmax] md:h-[14vmax] md:w-[18vmax] -translate-x-1/2",
-    colorClass: "text-ronin-white",
-    opacity: 0.05,
-    animation: "breathe",
-    scrollFactor: 0.05,
-    androidSafe: false,
-  },
-  {
-    id: "katana-mid-left",
-    Motif: KatanaEdge,
-    className: "absolute top-[48%] -left-[6%] h-[8vmax] w-[30vmax] md:h-[6vmax] md:w-[24vmax] rotate-[6deg]",
-    colorClass: "text-ronin-red",
-    opacity: 0.085,
-    animation: "drift-reverse",
-    scrollFactor: 0.22,
-    androidSafe: true,
-    animationDelay: "-30s",
-  },
-  {
-    id: "enso-bottom-right",
+    id: "enso-mid-left",
     Motif: EnsoCircle,
-    className: "absolute bottom-[8%] right-[6%] h-[18vmax] w-[18vmax] md:h-[14vmax] md:w-[14vmax] rotate-[120deg]",
+    className: "absolute top-[46%] -left-[5%] h-[19vmax] w-[19vmax] md:h-[16vmax] md:w-[16vmax] rotate-[-12deg]",
     colorClass: "text-ronin-white",
-    opacity: 0.06,
+    opacity: 0.13,
     animation: "drift-reverse",
+    scrollFactor: -0.22,
+    androidSafe: true,
+  },
+  {
+    id: "katana-mid-right",
+    Motif: KatanaDetail,
+    className: "absolute top-[34%] -right-[6%] h-[9vmax] w-[30vmax] md:h-[7vmax] md:w-[24vmax] rotate-[10deg]",
+    colorClass: "text-ronin-red",
+    opacity: 0.12,
+    animation: "drift-reverse",
+    scrollFactor: 0.2,
+    androidSafe: false,
+    animationDelay: "-4s",
+  },
+  {
+    id: "wave-bottom-left",
+    Motif: WaveCrest,
+    className: "absolute bottom-[6%] left-[1%] h-[15vmax] w-[26vmax] md:h-[13vmax] md:w-[22vmax]",
+    colorClass: "text-ronin-red",
+    opacity: 0.15,
+    animation: "drift",
+    scrollFactor: -0.18,
+    androidSafe: true,
+  },
+  {
+    id: "geometric-top-center",
+    Motif: GeometricPattern,
+    className: "absolute -top-[1%] left-[28%] h-[8vmax] w-[26vmax] md:h-[7vmax] md:w-[21vmax]",
+    colorClass: "text-ronin-white",
+    opacity: 0.1,
+    animation: "breathe",
     scrollFactor: -0.1,
     androidSafe: false,
-    animationDelay: "-8s",
-  },
-  {
-    id: "brush-top-center",
-    Motif: BrushStroke,
-    className: "absolute -top-[2%] left-[30%] h-[10vmax] w-[28vmax] md:h-[8vmax] md:w-[22vmax] rotate-[10deg]",
-    colorClass: "text-ronin-red",
-    opacity: 0.07,
-    animation: "drift",
-    scrollFactor: -0.28,
-    androidSafe: false,
-    animationDelay: "-22s",
+    animationDelay: "-2s",
   },
   {
     // 浪人 itself, in real ink-brush calligraphy — see KanjiMark.tsx for why
     // this is extracted glyph data rather than a hand-drawn stroke.
-    id: "kanji-mid-right",
+    id: "kanji-mid-right-lower",
     Motif: KanjiMark,
-    className: "absolute top-[62%] -right-[8%] h-[10vmax] w-[22vmax] md:h-[9vmax] md:w-[19vmax] rotate-[-4deg]",
+    className: "absolute top-[64%] -right-[7%] h-[10vmax] w-[22vmax] md:h-[9vmax] md:w-[19vmax] rotate-[-4deg]",
     colorClass: "text-ronin-red",
-    opacity: 0.08,
+    opacity: 0.14,
     animation: "breathe",
-    scrollFactor: 0.18,
+    scrollFactor: 0.24,
     androidSafe: true,
-    animationDelay: "-40s",
-  },
-  {
-    id: "mountain-bottom-center",
-    Motif: MountainSilhouette,
-    className: "absolute bottom-[-2%] right-[22%] h-[10vmax] w-[16vmax] md:h-[9vmax] md:w-[14vmax]",
-    colorClass: "text-ronin-white",
-    opacity: 0.04,
-    animation: "drift-reverse",
-    scrollFactor: -0.06,
-    androidSafe: false,
-    animationDelay: "-16s",
+    animationDelay: "-5s",
   },
 ];

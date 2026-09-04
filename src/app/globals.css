@@ -115,7 +115,7 @@ html[dir="rtl"] body {
     translate: 0 0;
   }
   50% {
-    translate: 6% 8%;
+    translate: 11% 14%;
   }
 }
 @keyframes ambient-drift-b {
@@ -124,7 +124,7 @@ html[dir="rtl"] body {
     translate: 0 0;
   }
   50% {
-    translate: -8% 5%;
+    translate: -14% 9%;
   }
 }
 @keyframes ambient-drift-c {
@@ -133,17 +133,17 @@ html[dir="rtl"] body {
     translate: 0 0;
   }
   50% {
-    translate: 5% -7%;
+    translate: 9% -12%;
   }
 }
 .animate-ambient-drift-a {
-  animation: ambient-drift-a 26s ease-in-out infinite;
+  animation: ambient-drift-a 9s ease-in-out infinite;
 }
 .animate-ambient-drift-b {
-  animation: ambient-drift-b 32s ease-in-out infinite;
+  animation: ambient-drift-b 11s ease-in-out infinite;
 }
 .animate-ambient-drift-c {
-  animation: ambient-drift-c 22s ease-in-out infinite;
+  animation: ambient-drift-c 8s ease-in-out infinite;
 }
 @keyframes ambient-drift-d {
   0%,
@@ -151,35 +151,35 @@ html[dir="rtl"] body {
     translate: 0 0;
   }
   50% {
-    translate: -4% -6%;
+    translate: -8% -11%;
   }
 }
 .animate-ambient-drift-d {
-  animation: ambient-drift-d 38s ease-in-out infinite;
+  animation: ambient-drift-d 13s ease-in-out infinite;
 }
 
 @keyframes ambient-line-drift {
   0% {
-    transform: rotate(-4deg) translateY(0);
+    transform: rotate(-6deg) translateY(0);
   }
   50% {
-    transform: rotate(2deg) translateY(-3%);
+    transform: rotate(5deg) translateY(-5%);
   }
   100% {
-    transform: rotate(-4deg) translateY(0);
+    transform: rotate(-6deg) translateY(0);
   }
 }
 .animate-ambient-line {
-  animation: ambient-line-drift 46s ease-in-out infinite;
+  animation: ambient-line-drift 15s ease-in-out infinite;
 }
 
 @keyframes ambient-sweep {
   0%,
-  92% {
+  80% {
     transform: translateX(-60%) skewX(-12deg);
     opacity: 0;
   }
-  95% {
+  90% {
     opacity: 0.5;
   }
   100% {
@@ -188,7 +188,7 @@ html[dir="rtl"] body {
   }
 }
 .animate-ambient-sweep {
-  animation: ambient-sweep 16s ease-in-out infinite;
+  animation: ambient-sweep 9s ease-in-out infinite;
 }
 
 /* Cinematic motif layer (CinematicMotifLayer) — slow, quiet loops for the
@@ -203,13 +203,13 @@ html[dir="rtl"] body {
     opacity: var(--motif-opacity, 0.06);
   }
   50% {
-    translate: -2.5% 3%;
-    rotate: 2deg;
-    opacity: calc(var(--motif-opacity, 0.06) * 0.55);
+    translate: -5% 6%;
+    rotate: 4deg;
+    opacity: calc(var(--motif-opacity, 0.06) * 0.6);
   }
 }
 .animate-motif-drift {
-  animation: motif-drift-loop 52s ease-in-out infinite;
+  animation: motif-drift-loop 10s ease-in-out infinite;
 }
 
 @keyframes motif-drift-loop-reverse {
@@ -220,26 +220,28 @@ html[dir="rtl"] body {
     opacity: var(--motif-opacity, 0.06);
   }
   50% {
-    translate: 3% -2.5%;
-    rotate: -3deg;
-    opacity: calc(var(--motif-opacity, 0.06) * 0.5);
+    translate: 6% -5%;
+    rotate: -5deg;
+    opacity: calc(var(--motif-opacity, 0.06) * 0.55);
   }
 }
 .animate-motif-drift-reverse {
-  animation: motif-drift-loop-reverse 60s ease-in-out infinite;
+  animation: motif-drift-loop-reverse 12s ease-in-out infinite;
 }
 
 @keyframes motif-breathe {
   0%,
   100% {
     opacity: var(--motif-opacity, 0.06);
+    scale: 1;
   }
   50% {
-    opacity: calc(var(--motif-opacity, 0.06) * 0.4);
+    opacity: calc(var(--motif-opacity, 0.06) * 0.45);
+    scale: 1.06;
   }
 }
 .animate-motif-breathe {
-  animation: motif-breathe 34s ease-in-out infinite;
+  animation: motif-breathe 7s ease-in-out infinite;
 }
 
 /* Mobile hero logo: pure CSS motion only (no JS/SVG masking) so it is

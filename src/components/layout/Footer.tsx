@@ -14,7 +14,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-ronin-white/10 bg-ronin-black">
+    <footer className="relative border-t border-ronin-white/10">
       <div className="mx-auto max-w-7xl px-6 pt-20 pb-10 md:px-10">
         <RevealText
           as="p"
