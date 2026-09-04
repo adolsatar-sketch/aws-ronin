@@ -21,7 +21,11 @@ export interface SocialGroup {
   labelAr: string;
   /** Flat groups list images directly; nested groups are split by client sub-brand. */
   count?: number;
+  /** Explicit, ordered filenames (under images/social/{slug}/) for a group that isn't a simple numbered sequence. */
+  images?: string[];
   subgroups?: SocialSubGroup[];
+  /** "grid" = fixed-aspect-ratio grid (uniformly-shaped posts); default "masonry". */
+  layout?: "masonry" | "grid";
 }
 
 export const socialGroups: SocialGroup[] = [
@@ -79,6 +83,22 @@ export const socialGroups: SocialGroup[] = [
       { slug: "vanili", labelEn: "Vanili", labelAr: "فانيلي", count: 3 },
     ],
   },
+  {
+    slug: "sports",
+    anchor: "sports",
+    labelEn: "Sports",
+    labelAr: "رياضة",
+    layout: "grid",
+    images: [
+      "world-cup-final.webp",
+      "haaland.webp",
+      "gyokeres.webp",
+      "lamine-yamal.webp",
+      "messi.webp",
+      "raphinha-vs-vinicius.webp",
+      "el-clasico.webp",
+    ],
+  },
 ];
 
 function pad(n: number) {
@@ -93,6 +113,9 @@ function toSocialImage(fullSrc: string): SocialImage {
 }
 
 export function groupImages(group: SocialGroup): SocialImage[] {
+  if (group.images) {
+    return group.images.map((file) => toSocialImage(`/images/social/${group.slug}/${file}`));
+  }
   if (group.count) {
     return Array.from({ length: group.count }, (_, i) =>
       toSocialImage(`/images/social/${group.slug}/${group.slug}-${pad(i + 1)}.webp`),
@@ -108,6 +131,7 @@ export function subgroupImages(group: SocialGroup, sub: SocialSubGroup): SocialI
 }
 
 export const totalSocialImages = socialGroups.reduce((total, group) => {
+  if (group.images) return total + group.images.length;
   if (group.count) return total + group.count;
   return total + (group.subgroups ?? []).reduce((s, sg) => s + sg.count, 0);
 }, 0);

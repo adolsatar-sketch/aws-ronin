@@ -50,7 +50,11 @@ export function SocialMediaListing() {
                 ))}
               </div>
             ) : (
-              <PostGallery images={groupImages(group)} alt={lang === "ar" ? group.labelAr : group.labelEn} />
+              <PostGallery
+                images={groupImages(group)}
+                alt={lang === "ar" ? group.labelAr : group.labelEn}
+                layout={group.layout}
+              />
             )}
           </section>
         ))}
